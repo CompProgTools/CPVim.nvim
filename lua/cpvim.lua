@@ -1,7 +1,7 @@
 vim.api.nvim_create_user_command("CPVim", function(opts)
     local alias = opts.args
     if alias == "" then
-        vim.api.nvim_err_writeln("Usage: CPVim <template_filename")
+        vim.api.nvim_err_writeln("Usage: CPVim <template_filename>")
         return
     end
     require("cpvim").load_template(alias)
@@ -37,8 +37,8 @@ M.load_template = function(filename)
     local content = file:read("*a")
     file:close()
 
-    vim.api.nvim_command("enew") -- open new folder
-    vim.api.nvim_buf_set_lines(0, 0, -1, falese, vim.split(content, "\n"))
+    vim.api.nvim_command("enew") -- open new buffer
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n"))
     vim.api.nvim_command("setlocal bufftype=") -- normal buffer
 end
 
