@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("CPVim", function(opts))
+vim.api.nvim_create_user_command("CPVim", function(opts)
     local alias = opts.args
     if alias == "" then
         vim.api.nvim_err_writeln("Usage: CPVim <template_filename")
@@ -21,4 +21,25 @@ end, {
         end
         return files
     end
-}
+})
+
+local M = {}
+
+M.load_template = function(filename)
+    local home = os.getenv("HOME")
+    local path = home .. "/.cpcli/templates" .. filename
+    local file = io.open(path, "r")
+    if not file then
+        vim.api.nvim_err_writeln("Template not found: " .. filename)
+        return
+    end
+
+    local content = file:read("*a")
+    file:close()
+
+    vim.api.nvim_command("enew") -- open new folder
+    vim.api.nvim_buf_set_lines(0, 0, -1, falese, vim.split(content, "\n"))
+    vim.api.nvim_command("setlocal bufftype=") -- normal buffer
+end
+
+return M
