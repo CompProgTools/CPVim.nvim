@@ -27,7 +27,7 @@ local M = {}
 
 M.load_template = function(filename)
     local home = os.getenv("HOME")
-    local path = home .. "/.cpcli/templates" .. filename
+    local path = home .. "/.cpcli/templates/" .. filename
     local file = io.open(path, "r")
     if not file then
         vim.api.nvim_err_writeln("Template not found: " .. filename)
