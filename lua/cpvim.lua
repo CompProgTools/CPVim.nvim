@@ -43,7 +43,6 @@ M.load_template = function(filename)
 
     vim.api.nvim_command("enew") -- open new buffer
     vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n"))
-    vim.api.nvim_command("setlocal bufftype=") -- normal buffer
 end
 
 return M
