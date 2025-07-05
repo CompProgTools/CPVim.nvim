@@ -41,8 +41,16 @@ M.load_template = function(filename)
     local content = file:read("*a")
     file:close()
 
-    vim.api.nvim_command("enew") -- open new buffer
-    vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n"))
+    local currName = vim.api.nvim_buf_get_name(0)
+
+    if currName == "" then
+        local base = filename:match("(.+)%..+$") or filename
+        local ext = filename:match("%.([^.]+)$") or "txt"
+        local newName = base .. "Main." .. ext
+        vim.api.nvim_command("edit " .. newName)
+    end
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn.split(content, "\n"))
 end
 
 return M
