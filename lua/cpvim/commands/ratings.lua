@@ -84,8 +84,8 @@ M.show_ratings = function()
         string.format("│  │ Rating: %-19s │ │", config.leetcode_rating or "N/A"),
         "│  └─────────────────────────────────┘ │",
         "│                                     │",
-        "│  👤 " .. (config.name or "Unknown User") .. string.rep(" ", math.max(0, 25 - string.len(config.name or "Unknown User"))) .. "│",
-        "│  🔧 " .. (config.preferred_language or "N/A") .. string.rep(" ", math.max(0, 25 - string.len(config.preferred_language or "N/A"))) .. "│",
+        "│  👤 " .. (config.name or "Unknown User") .. string.rep(" ", math.max(0, 25 - (#(config.name or "Unknown User")))) .. "│",
+        "│  🔧 " .. (config.preferred_language or "N/A") .. string.rep(" ", math.max(0, 25 - (#(config.preferred_language or "N/A")))) .. "│",
         "│                                     │",
         "╰─────────────────────────────────────╯"
     }

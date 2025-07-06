@@ -56,13 +56,14 @@ M.load_template = function(filename)
     local currName = vim.fn.expand("%:t")
     if currName == "" then
         local base = filename:match("(.+)%..+$") or filename
-        local ext = filename:match("%.([^%.]+)$") or "txt"
+        local ext = filename:match("%.([^%.]+)$") or "cpp" -- Default to cpp instead of txt
         local newName = base .. "Main." .. ext
         
         vim.api.nvim_command("edit " .. newName)
     end
 
     vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn.split(content, "\n"))
+    vim.api.nvim_echo({{"Template loaded: " .. filename, "Normal"}}, false, {})
 end
 
 function M.setup(opts)
