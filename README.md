@@ -5,7 +5,6 @@ A Neovim plugin for competitive programming that integrates with your `.cpcli` c
 ## Features
 
 - 🚀 **Template Loading**: Quickly load competitive programming templates with `:CPVim <template>`
-- 📊 **Ratings Display**: View your Codeforces and LeetCode ratings with `:CPVimRatings`
 - 🔧 **Integration**: Works seamlessly with your existing `.cpcli` setup
 
 ## Installation
@@ -16,7 +15,6 @@ A Neovim plugin for competitive programming that integrates with your `.cpcli` c
 {
     "compprogtools/CPVim",
     dependencies = {
-        -- Optional: Add any dependencies here
     },
     config = function()
         -- Plugin loads automatically

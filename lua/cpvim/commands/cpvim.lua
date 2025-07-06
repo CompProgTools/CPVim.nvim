@@ -1,28 +1,42 @@
 local M = {}
+local ratings = require("cpvim.commands.ratings")
 
 vim.api.nvim_create_user_command("CPVim", function(opts)
-    local alias = opts.args
-    if alias == "" then
-        vim.api.nvim_err_writeln("Usage: CPVim <template_filename>")
+    local args = vim.split(opts.args, "%s+")
+    local command = args[1]
+    
+    if command == "ratings" then
+        ratings.show_ratings()
+    elseif command and command ~= "" then
+        M.load_template(command)
+    else
+        vim.api.nvim_err_writeln("Usage: CPVim <template_filename> | CPVim ratings")
         return
     end
-
-    M.load_template(alias)
 end, {
     nargs = 1,
     complete = function(_, line)
-        local home = os.getenv("HOME")
-        local path = home .. "/.cpcli/templates"
-        local handle = io.popen("ls " .. vim.fn.shellescape(path))
-        if not handle then return {} end
-        local result = handle:read("*a")
-        handle:close()
-
-        local files = {}
-        for file in string.gmatch(result, "[^\n]+") do
-            table.insert(files, file)
+        local words = vim.split(line, "%s+")
+        if #words <= 2 then
+            -- First argument completion
+            local completions = {"ratings"}
+            
+            -- Add template files
+            local home = os.getenv("HOME")
+            local path = home .. "/.cpcli/templates"
+            local handle = io.popen("ls " .. vim.fn.shellescape(path) .. " 2>/dev/null")
+            if handle then
+                local result = handle:read("*a")
+                handle:close()
+                
+                for file in string.gmatch(result, "[^\n]+") do
+                    table.insert(completions, file)
+                end
+            end
+            
+            return completions
         end
-        return files
+        return {}
     end
 })
 
