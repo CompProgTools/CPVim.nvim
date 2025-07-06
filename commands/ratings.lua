@@ -58,8 +58,8 @@ M.show_ratings = function()
         "       Competitive Ratings",
         "────────────────────────────",
         "",
-        "Codeforces [" .. cf_user .. "]: " .. cf_rating,
-        "LeetCode   [" .. lc_user .. "]: " .. lc_rating,
+        "Codeforces [" .. cfUser .. "]: " .. cfRating,
+        "LeetCode   [" .. lcUser .. "]: " .. lcRating,
         "",
         "────────────────────────────",
     }
