@@ -1,41 +1,39 @@
-# Compiled Lua sources
-luac.out
+# Vim swap files
+*.swp
+*.swo
+*~
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+# Neovim
+.nvim/
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Precompiled Headers
-*.gch
-*.pch
+# Logs
+*.log
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+# Runtime data
+pids
+*.pid
+*.seed
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Coverage directory used by tools like istanbul
+coverage
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Dependency directories
+node_modules/
 
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Lua compiled files
+*.luac

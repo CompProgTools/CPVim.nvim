@@ -1,19 +1,36 @@
 # CPVim
-A neovim plugin that allows you to do quick commands for competitive programming
 
-## Usage
+A Neovim plugin for competitive programming that integrates with your `.cpcli` configuration to load templates and display ratings from various platforms.
 
-### Lazy.nvim
+## Features
 
-```lua
+- 🚀 **Template Loading**: Quickly load competitive programming templates with `:CPVim <template>`
+- 📊 **Ratings Display**: View your Codeforces and LeetCode ratings with `:CPVimRatings`
+- 🔧 **Integration**: Works seamlessly with your existing `.cpcli` setup
+
+## Installation
+
+### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+\`\`\`lua
 {
-  "compprogtools/cpvim.nvim",
-  lazy = false,
+    "compprogtools/CPVim",
+    dependencies = {
+        -- Optional: Add any dependencies here
+    },
+    config = function()
+        -- Plugin loads automatically
+    end
 }
-```
+\`\`\`
 
-### Packer
+### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
-```lua
-use "compprogtools/cpvim.nvim"
-```
+\`\`\`lua
+use 'compprogtools/CPVim'
+\`\`\`
+
+### Using [vim-plug](https://github.com/junegunn/vim-plug)
+
+```vim
+Plug 'compprogtools/CPVim'
