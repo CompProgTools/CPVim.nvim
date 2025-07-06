@@ -1,5 +1,6 @@
 local M = {}
 local ratings = require("cpvim.commands.ratings")
+local dashboard = require("cpvim.commands.dashboard")
 
 vim.api.nvim_create_user_command("CPVim", function(opts)
     local args = vim.split(opts.args, "%s+")
