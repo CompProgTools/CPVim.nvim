@@ -3,7 +3,7 @@ local M = {}
 local http = require("socket.http")
 local json = require("dkjson")
 
-vim.api.nvim_create_user_command("CPVim ratings", function()
+vim.api.nvim_create_user_command("CPVimRatings", function()
     M.show_ratings()
 end, {})
 
