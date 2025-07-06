@@ -1,3 +1,3 @@
-require("lua.cpvim.commands.cpvim")
-require("lua.cpvim.commands.ratings")
-require("lua.cpvim.commands.dashboard")
+require("cpvim.commands.cpvim")
+require("cpvim.commands.ratings")
+require("cpvim.commands.dashboard")
