@@ -9,7 +9,7 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
     if command == "ratings" then
         ratings.show_ratings()
     elseif command == "dashboard" then
-        require("cpvim.commands.dashboard").showDashboard()
+        dashboard.showDashboard()
     elseif command and command ~= "" then
         M.load_template(command)
     else
@@ -57,9 +57,8 @@ M.load_template = function(filename)
     local currName = vim.fn.expand("%:t")
     if currName == "" then
         local base = filename:match("(.+)%..+$") or filename
-        local ext = filename:match("%.([^%.]+)$") or "cpp" -- Default to cpp instead of txt
+        local ext = filename:match("%.([^%.]+)$") or "cpp"
         local newName = base .. "Main." .. ext
-        
         vim.api.nvim_command("edit " .. newName)
     end
 
