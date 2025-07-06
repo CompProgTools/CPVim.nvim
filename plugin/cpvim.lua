@@ -7,3 +7,4 @@ vim.g.loaded_cpvim = 1
 -- Load the main plugin modules
 require("cpvim.commands.cpvim")
 require("cpvim.commands.ratings")
+require("cpvim.commands.dashboard")
