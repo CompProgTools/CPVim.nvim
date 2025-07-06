@@ -41,6 +41,8 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -78,7 +80,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <h1 id="welcome-to-cpvim-documentation">Welcome to CPVim Documentation</h1>
+<p>This is the official site for the CPVim.nvim plugin made by <a href="https://github.com/compprogtools">CompProgTools</a>.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installation">Installation</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>CPVim is a Neovim plugin that aims to improve worflow and productivity for neovim users that are interested in competitive programming.</p>
+<p>It targets template usage, stats, and other info that is known to be useful for contest environments, as well as general learning.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Since CPVim.nvim is a part of the <a href="https://github.com/compprogtools">CompProgTools</a> ecosystem, it requires the usage of <a href="https://github.com/compprogtools/cpcli">CPCli</a> our command line tool that provides deeper functionality than CPVim. Since CPVim uses the same config files and other data files such as streaks and problems, CPCli is a prerequisite that needs to be installed in order for CPVim to work.</p>
+<h2 id="installation">Installation</h2>
+<p>Once you have CPCli installed and setup, you can check your <code>~/.cpcli</code> path. If it exists, and it has the files <code>config.json</code> and <code>streak.json</code>, you are good to go!</p>
+<p>If you're using a Plugin manager such as Lazy.nvim or Packer, here are the steps.</p>
+<h3 id="lazynvim">Lazy.nvim</h3>
+<pre><code class="language-lua">{
+  &quot;compprogtools/CPVim.nvim&quot;,
+  lazy = false, -- ensure it loads on startup
+  config = function()
+  end,
+  cmd = { &quot;CPVim&quot;}, -- ensure the plugin loads when these commands are used
+}
+</code></pre>
+<p>Or if you're using a structured setup,</p>
+<pre><code class="language-lua">return {
+  &quot;compprogtools/CPVim.nvim&quot;,
+  lazy = false, -- ensure it loads on startup
+  config = function()
+  end,
+  cmd = { &quot;CPVim&quot;}, -- ensure the plugin loads when these commands are used
+}
+</code></pre>
+<h3 id="packer">Packer</h3>
+<p><code>use 'compprogtools/CPVim'</code></p>
+<h3 id="vim-plug">vim-plug</h3>
+<p><code>Plug 'compprogtools/CPVim'</code></p>
+<p>Once thats done, you go into Neovim by running <code>nvim</code> and type in <code>:CPVim</code>.</p>
+<p>If running this command doesn't return <code>Not an editor command: CPVim</code>, that means you're good to go!</p>
               
             </div>
           </div><footer>
@@ -127,5 +168,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-07-06 15:27:20.108099+00:00
+Build Date UTC : 2025-07-06 18:12:28.670328+00:00
 -->
