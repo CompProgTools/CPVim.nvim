@@ -51,4 +51,7 @@ M.load_template = function(filename)
     vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn.split(content, "\n"))
 end
 
+function M.setup(opts)
+end
+
 return M
