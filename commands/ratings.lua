@@ -48,10 +48,10 @@ M.show_ratings = function()
         end
     end
 
-    vim.api.nivm_command("vsplit")
+    vim.api.nvim_command("vsplit")
     local win = vim.api.nvim_get_current_win()
     local buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_win_set_but(win, buf)
+    vim.api.nvim_win_set_buf(win, buf)
 
     local lines = {
         "────────────────────────────",

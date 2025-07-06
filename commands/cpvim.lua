@@ -28,7 +28,7 @@ end, {
 
 M.load_template = function(filename)
     local home = os.getenv("HOME")
-    local path = home .. "/.cpcli/templates" .. filename
+    local path = home .. "/.cpcli/templates/" .. filename
 
     local file = io.open(path, "r")
     if not file then
@@ -39,11 +39,12 @@ M.load_template = function(filename)
     local content = file:read("*a")
     file:close()
 
+    local currName = vim.fn.expand("%:t")
     if currName == "" then
-        local base = filename:match() or filename
-        local ext = filename:match() or "txt"
+        local base = filename:match("(.+)%..+$") or filename
+        local ext = filename:match("%.([^%.]+)$") or "txt"
         local newName = base .. "Main." .. ext
-
+        
         vim.api.nvim_command("edit " .. newName)
     end
 
