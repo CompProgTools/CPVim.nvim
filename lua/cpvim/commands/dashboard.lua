@@ -1,4 +1,5 @@
 local M = {}
+local utils = require('cpvim.utils')
 
 M.showDashboard = function()
     local home = os.getenv("HOME")
