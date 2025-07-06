@@ -1,2 +1,2 @@
-require("lua.cpvim.commands.cpvim")
-require("lua.cpvim.commands.ratings")
+require("cpvim.commands.cpvim")
+require("cpvim.commands.ratings")
