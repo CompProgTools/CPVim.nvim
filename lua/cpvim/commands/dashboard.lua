@@ -16,7 +16,7 @@ M.showDashboard = function()
     local configContent = file:read("*a")
     file:close()
 
-    local config = util.parse_json(configContent)
+    local config = utils.parse_json(configContent)
 
     -- load streak
     local file2 = io.open(streakPath, "r")
@@ -24,8 +24,8 @@ M.showDashboard = function()
     if file2 then
         local streakContent = file2:read("*a")
         file2:close()
-        local streakConfig = util.parse_json(streakContent)
-        highScore = streakConfig.highScore or "N/A"
+        local streakConfig = utils.parse_json(streakContent)
+        highScore = streakConfig.highscore or "N/A"
     end
 
     local name = config.name or "unknown"
