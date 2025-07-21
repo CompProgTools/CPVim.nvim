@@ -11,7 +11,7 @@ A Neovim plugin for competitive programming that integrates with your `.cpcli` c
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
-\`\`\`lua
+```lua
 {
     "compprogtools/CPVim",
     dependencies = {
@@ -20,15 +20,16 @@ A Neovim plugin for competitive programming that integrates with your `.cpcli` c
         -- Plugin loads automatically
     end
 }
-\`\`\`
+```
 
 ### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
-\`\`\`lua
+```lua
 use 'compprogtools/CPVim'
-\`\`\`
+```
 
 ### Using [vim-plug](https://github.com/junegunn/vim-plug)
 
-```vim
+```lua
 Plug 'compprogtools/CPVim'
+```
