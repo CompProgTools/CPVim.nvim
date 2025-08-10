@@ -21,7 +21,7 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
 end, {
   nargs = 1,
   complete = function()
-    return { "ratings", "dashboard" } ++ templates.list()
+    return vim.list_extend({ "ratings", "dashboard" }, templates.list())
   end
 })
 
