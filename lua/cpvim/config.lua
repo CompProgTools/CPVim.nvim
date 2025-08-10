@@ -10,7 +10,8 @@ M.defaults = {
   preferred_language = "cpp",
 }
 
-local config_path = vim.fn.stdpath("config") .. "/cpvim/config.json"
+local data_dir = vim.fn.stdpath("data") .. "/cpvim"
+local config_path = data_dir .. "/config.json"
 
 function M.load()
   local file = io.open(config_path, "r")
@@ -45,8 +46,7 @@ function M.load()
 end
 
 function M.save()
-  local dir = vim.fn.stdpath("config") .. "/cpvim"
-  vim.fn.mkdir(dir, "p", 0700) -- make sure permissions are secure
+  vim.fn.mkdir(data_dir, "p", 0700)
 
   local file = io.open(config_path, "w")
   if not file then
@@ -56,7 +56,6 @@ function M.save()
 
   file:write(vim.fn.json_encode(M.current))
   file:close()
-
   return true
 end
 
@@ -75,8 +74,7 @@ function M.set(key_or_table, value)
     vim.api.nvim_err_writeln("cpvim: invalid config key: " .. tostring(key_or_table))
     return false
   end
-
-  return M.save()  -- return true on success, false on failure
+  return M.save()
 end
 
 return M

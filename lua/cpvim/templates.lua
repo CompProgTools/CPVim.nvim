@@ -1,4 +1,3 @@
--- lua/cpvim/templates.lua
 local M = {}
 
 local data_dir = vim.fn.stdpath("data") .. "/cpvim/templates"
