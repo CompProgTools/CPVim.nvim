@@ -25,6 +25,30 @@ end, {
   end
 })
 
+vim.api.nvim_create_user_command("CPVimSet", function(opts)
+  local args = vim.split(opts.args, "%s+")
+  if #args < 2 then
+    vim.api.nvim_err_writeln("Usage: CPVimSet <key> <value>")
+    return
+  end
+
+  local key = args[1]
+  local value = table.concat(args, " ", 2)
+
+  if tonumber(value) then
+    value = tonumber(value)
+  end
+
+  local config = require("cpvim.config")
+  config.set(key, value)
+  vim.api.nvim_echo({{("cpvim: %s = %s"):format(key, value), "Normal"}}, false, {})
+end, {
+  nargs = "+",
+  complete = function()
+    return vim.tbl_keys(require("cpvim.config").defaults)
+  end
+})
+
 M.load_template = function(name)
   local content = templates.load(name)
   if not content then
