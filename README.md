@@ -12,7 +12,7 @@ A Neovim plugin for competitive programming that integrates with your `.cpcli` c
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
-{
+return {
     "compprogtools/CPVim",
     dependencies = {
     },
