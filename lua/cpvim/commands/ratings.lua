@@ -1,5 +1,6 @@
 local M = {}
-local utils = require('cpvim.utils')
+local config = require("cpvim.config")
+local utils = require("cpvim.utils")
 
 M.get_rating_color = function(rating, platform)
     if platform == "codeforces" then
@@ -22,26 +23,12 @@ M.get_rating_color = function(rating, platform)
 end
 
 M.show_ratings = function()
-    local home = os.getenv("HOME")
-    local config_path = home .. "/.cpcli/config.json"
-
-    local file = io.open(config_path, "r")
-    if not file then
-        vim.api.nvim_err_writeln("Config file not found: " .. config_path)
-        return
-    end
-
-    local content = file:read("*a")
-    file:close()
-
-    local config = utils.parse_json(content)
+    local cfg = config.current
 
     local buf = vim.api.nvim_create_buf(false, true)
-
     vim.cmd("rightbelow vsplit")
     local win = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_buf(win, buf)
-
     vim.api.nvim_win_set_width(win, 40)
 
     local lines = {
@@ -51,19 +38,19 @@ M.show_ratings = function()
         "│                                     │",
         "│  📊 CODEFORCES                      │",
         "│  ┌─────────────────────────────────┐ │",
-        string.format("│  │ User: %-21s │ │", config.codeforces or "N/A"),
-        string.format("│  │ Rating: %-19s │ │", config.codeforces_rating or "N/A"),
+        string.format("│  │ User: %-21s │ │", cfg.codeforces or "N/A"),
+        string.format("│  │ Rating: %-19s │ │", cfg.codeforces_rating or "N/A"),
         "│  └─────────────────────────────────┘ │",
         "│                                     │",
-        "│  🧠 LEETCODE                        │", 
+        "│  🧠 LEETCODE                        │",
         "│  ┌─────────────────────────────────┐ │",
-        string.format("│  │ User: %-21s │ │", config.leetcode or "N/A"),
-        string.format("│  │ Rating: %-19s │ │", config.leetcode_rating or "N/A"),
+        string.format("│  │ User: %-21s │ │", cfg.leetcode or "N/A"),
+        string.format("│  │ Rating: %-19s │ │", cfg.leetcode_rating or "N/A"),
         "│  └─────────────────────────────────┘ │",
-        "│                                     │",
-        "│  👤 " .. (config.name or "Unknown User") .. string.rep(" ", math.max(0, 25 - (#(config.name or "Unknown User")))) .. "│",
-        "│  🔧 " .. (config.preferred_language or "N/A") .. string.rep(" ", math.max(0, 25 - (#(config.preferred_language or "N/A")))) .. "│",
-        "│                                     │",
+        "│ │",
+        "│ 👤 " .. (cfg.name or "Anonymous") .. string.rep(" ", math.max(0, 30 - #(cfg.name or "Anonymous"))) .. "│",
+        "│ 💻 Using: " .. (cfg.preferred_language or "cpp") .. string.rep(" ", math.max(0, 24 - #(cfg.preferred_language or "cpp"))) .. "│",
+        "│ │",
         "╰─────────────────────────────────────╯"
     }
 
@@ -92,14 +79,14 @@ M.show_ratings = function()
     vim.api.nvim_buf_add_highlight(buf, ns_id, "Keyword", 4, 2, 18)
     vim.api.nvim_buf_add_highlight(buf, ns_id, "Keyword", 10, 2, 14)
 
-    if config.codeforces_rating then
-        local cf_color = M.get_rating_color(config.codeforces_rating, "codeforces")
-        vim.api.nvim_buf_add_highlight(buf, ns_id, cf_color, 7, 12, 12 + #tostring(config.codeforces_rating))
+    if cfg.codeforces_rating then
+        local cf_color = M.get_rating_color(cfg.codeforces_rating, "codeforces")
+        vim.api.nvim_buf_add_highlight(buf, ns_id, cf_color, 7, 12, 12 + #tostring(cfg.codeforces_rating))
     end
 
-    if config.leetcode_rating then
-        local lc_color = M.get_rating_color(config.leetcode_rating, "leetcode")
-        vim.api.nvim_buf_add_highlight(buf, ns_id, lc_color, 13, 12, 12 + #tostring(config.leetcode_rating))
+    if cfg.leetcode_rating then
+        local lc_color = M.get_rating_color(cfg.leetcode_rating, "leetcode")
+        vim.api.nvim_buf_add_highlight(buf, ns_id, lc_color, 13, 12, 12 + #tostring(cfg.leetcode_rating))
     end
 
     vim.api.nvim_buf_add_highlight(buf, ns_id, "String", 16, 2, -1)
