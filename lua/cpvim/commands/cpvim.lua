@@ -8,7 +8,7 @@ local function ensure_templates_dir()
     local templates_path = home .. "/.cpvim/templates"
     local stat = uv.fs_stat(templates_path)
     if not stat then
-        uv.fs_mkdir(templates_path, 448) -- 448 = 0700 permissions
+        uv.fs_mkdir(templates_path, 448) -- 0700 permissions
     end
     return templates_path
 end
@@ -17,7 +17,11 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
     local args = vim.split(opts.args, "%s+")
     local templates_path = ensure_templates_dir()
 
-    if args[1] == "create" and args[2] then
+    if args[1] == "create" then
+        if not args[2] or args[2] == "" then
+            api.nvim_err_writeln("Usage: CPVim create <template_filename>")
+            return
+        end
         local template_file = templates_path .. "/" .. args[2]
         local f = io.open(template_file, "r")
         if f then
@@ -37,6 +41,10 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
     end
 
     local template_name = args[1]
+    if template_name == "create" then
+        return
+    end
+
     if not template_name or template_name == "" then
         api.nvim_err_writeln("Usage: CPVim create <template_filename> | CPVim <template_filename> [<new_filename>]")
         return
@@ -53,7 +61,6 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
     f:close()
 
     if args[2] and args[2] ~= "" then
-        -- Create a new file at root with the name args[2] and fill with template content
         local new_file = args[2]
         local nf = io.open(new_file, "r")
         if nf then
