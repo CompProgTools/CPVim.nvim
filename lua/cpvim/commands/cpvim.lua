@@ -69,10 +69,13 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
             return
         end
         nf = io.open(new_file, "w")
-        if not nf then
-            api.nvim_err_writeln("Failed to create file: " .. new_file)
-            return
+        if not stat then
+            local ok, err = uv.fs_mkdir(templates_path, 448)
+            if not ok then
+                print("Failed to create templates dir:", err)
+            end
         end
+
         nf:write(content)
         nf:close()
         api.nvim_command("edit " .. new_file)
