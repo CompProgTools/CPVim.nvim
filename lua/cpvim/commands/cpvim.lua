@@ -8,10 +8,7 @@ local function ensure_templates_dir()
     local templates_path = home .. "/.cpvim/templates"
     local stat = uv.fs_stat(templates_path)
     if not stat then
-        local ok, err = uv.fs_mkdir(templates_path, 448) -- 0700 perms
-        if not ok and not err:match("EEXIST") then
-            print("Failed to create templates dir:", err)
-        end
+        uv.fs_mkdir(templates_path, 448) -- 0700 perms
     end
     return templates_path
 end
@@ -45,7 +42,6 @@ vim.api.nvim_create_user_command("CPVim", function(opts)
 
     local template_name = args[1]
     if template_name == "create" then
-        -- Already handled above; just return
         return
     end
 
