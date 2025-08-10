@@ -1,9 +1,10 @@
+-- This file ensures the plugin is loaded when Neovim starts
 if vim.g.loaded_cpvim then
-  return
+    return
 end
 vim.g.loaded_cpvim = 1
 
-require("cpvim.config").load()
+-- Load the main plugin modules
 require("cpvim.commands.cpvim")
 require("cpvim.commands.ratings")
 require("cpvim.commands.dashboard")
